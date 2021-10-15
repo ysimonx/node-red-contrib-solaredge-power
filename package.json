@@ -1,0 +1,29 @@
+{
+"name" : "node-red-contrib-solaredge-power",
+"version" : "0.1.0",
+"description" : "Node-RED node to interface with SolarEdge solar photovoltaic inverters API",
+"dependencies": {
+  "https" : "^1.0.0",
+  "urllib" : "^2.13.0"
+},
+"engines":
+{
+  "node": ">=5.0.0"
+},
+"repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/ysimonx/node-red-contrib-solaredge-power.git"
+},
+"license": "MIT",
+"keywords": [ "node-red", "solaredge", "solar", "photovoltaic", "inverter", "power"],
+"node-red" : {
+  "nodes": {
+    "solaredge-power": "solaredge-power.js"
+  }
+},
+"author": {
+  "name": "Yannick Simon",
+  "email": "yannick.simon@gmail.com",
+  "url": "https://www.kysoe.com"
+}
+}
