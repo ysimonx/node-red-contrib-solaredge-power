@@ -32,8 +32,15 @@ The input node comprises the following options:
 
 The following commands are supported:
 
+
   * **Details**: This provides the overview of the system, including information such as the name, status, peak power, etc.
   * **Overview**: This provides data such as the lifetime energy output, current power output, etc.
+  * **Current Power Flow**:  Retrieves the current power flow between all elements of the site including PV array, storage (battery), loads (consumption) and grid.
+  * **Inventory**: Returns the inventory of SolarEdge equipment in the site, including inverters/SMIs, batteries, meters, gateways and sensors.
+  * **Data Period**: Returns the energy production start and end dates of the site.
+  * **Env Benefits**: Returns all environmental benefits based on site energy production: CO2 emissions saved, equivalent trees planted, and light bulbs powered for a day.
+  * **Sensors**: Returns a list of all the sensors in the site, and the device to which they are connected.
+  * **List**: Return a list of inverters/SMIs in the specific site..
 
 For more information on the commands, see the [SolarEdge monitoring API documentation](http://www.solaredge.com/sites/default/files/se_monitoring_api.pdf).
 
