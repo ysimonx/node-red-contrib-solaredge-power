@@ -12,6 +12,7 @@ module.exports = function(RED) {
         this.siteid = n.siteid;
         this.apikey = n.apikey;
     }
+
     RED.nodes.registerType("solaredge-power-site", SolarEdgeSite);
 
     function SolarEdgeNode(n) {
@@ -28,7 +29,31 @@ module.exports = function(RED) {
             for (var key in options) {
                 query += encodeURIComponent(key) + "=" + encodeURIComponent(options[key]);
             }
-            return API_BASE + "/site/" + node.site.siteid + "/" + command + ".json" + "?" + query;
+
+            var prefix_url = ""
+            switch (command) {
+
+                case 'list':
+                case 'sensors':
+                    prefix_url = "/equipment/" + node.site.siteid + "/" + command + ".json" ;
+                    break;
+
+                case 'details':
+                case 'overview':
+                case 'currentPowerFlow':
+                case 'inventory':
+                case 'dataPeriod':
+                case 'envBenefits':
+                    prefix_url = "/site/" + node.site.siteid + "/" + command + ".json" ;
+                    break;
+
+                default:
+                    prefix_url = "/site/" + node.site.siteid + "/" + command + ".json";
+              }
+
+
+            return API_BASE + prefix_url + "?" + query;
+            // return API_BASE + "/site/" + node.site.siteid + "/" + command + ".json" + "?" + query;
         }
         
         function fetchData() {
@@ -76,6 +101,7 @@ module.exports = function(RED) {
 
         fetchData();
     }
+
     RED.nodes.registerType("solaredge-power", SolarEdgeNode);
 
 };
