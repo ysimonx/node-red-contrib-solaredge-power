@@ -26,6 +26,8 @@ The input node comprises the following options:
   * **Command**: The command to run against the SolarEdge monitoring API.
   * **Interval**: The interval, in seconds, between calls to the monitoring API.
 
+![Alt text](screenshot.png "Title")
+
 ### Commands
 
 The following commands are supported:
