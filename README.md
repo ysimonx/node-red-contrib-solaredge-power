@@ -3,6 +3,9 @@
 This is a node for Node-RED to grab data from your SolarEdge inverter. You'll need an API key and your site ID. Talk to your solar PV installer if you need these.
 This is a fork of https://github.com/mattjgalloway/node-red-contrib-solaredge
 
+
+by [Yannick Simon](https://yannicksimon.fr)
+
 ## Installation
 
 In your Node-RED directory:
