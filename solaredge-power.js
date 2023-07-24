@@ -44,8 +44,12 @@ module.exports = function(RED) {
                 case 'inventory':
                 case 'dataPeriod':
                 case 'envBenefits':
+		    prefix_url = "/site/" + node.site.siteid + "/" + command + ".json" ;
+                    break;
+
+	
                 case 'inverterTechnicalData':
-                    prefix_url = "/site/" + node.site.siteid + "/" + command + ".json" ;
+                    prefix_url = "/site/" + node.site.siteid + "/" + "inventory" + ".json" ;
                     break;
 
                 default:
@@ -59,6 +63,7 @@ module.exports = function(RED) {
         
         function fetchData2nd(node, msg) {
            var options = { api_key: node.site.apikey };
+           var query="";
             for (var key in options) {
                 query += encodeURIComponent(key) + "=" + encodeURIComponent(options[key]);
             }
