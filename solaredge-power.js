@@ -44,6 +44,7 @@ module.exports = function(RED) {
                 case 'inventory':
                 case 'dataPeriod':
                 case 'envBenefits':
+                case 'inverterTechnicalData':
                     prefix_url = "/site/" + node.site.siteid + "/" + command + ".json" ;
                     break;
 
@@ -56,6 +57,18 @@ module.exports = function(RED) {
             // return API_BASE + "/site/" + node.site.siteid + "/" + command + ".json" + "?" + query;
         }
         
+        function fetchData2nd(node, msg) {
+           var options = { api_key: node.site.apikey };
+            for (var key in options) {
+                query += encodeURIComponent(key) + "=" + encodeURIComponent(options[key]);
+            }
+            newurl = API_BASE + "/equipment/" + node.site.siteid + "/" + "7401443E-F7" + "/data?startTime=2023-07-24%2011:00:00&endTime=2023-07-24%2013:00:00&" + query;
+            msg.newnurl = newurl;
+            node.send(msg);
+            node.status({});
+        }
+
+
         function fetchData() {
             node.timer = setTimeout(fetchData, node.interval * 1000);
 
@@ -80,8 +93,16 @@ module.exports = function(RED) {
                 res.on("end",function() {
                     try { msg.payload = JSON.parse(msg.payload); }
                     catch(e) { node.warn("Invalid JSON returned"); }
-                    node.send(msg);
-                    node.status({});
+                    switch (node.command) {
+                        case 'inverterTechnicalData':
+                            fetchData2nd(node, msg);
+                            break;
+                        
+                        default:
+                            node.send(msg);
+                            node.status({});
+                            break;
+                    }
                 });
             });
 
